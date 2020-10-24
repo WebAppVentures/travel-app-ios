@@ -3,6 +3,7 @@
 
 import Foundation
 import AviasalesKit
+import JRProfile
 import SafariServices
 
 class InfoScreenRouter: JRBaseRouter {
@@ -26,9 +27,9 @@ class InfoScreenRouter: JRBaseRouter {
             let size = CGSize(width: 600, height: 700)
             let params = JRBottomDrawerPresentationParams(height: height, sizeInPopover: size, sourceView: nil)
             params.permittedArrowDirections = .unknown
-            self.viewController.presentInBottomDrawer(navigationController, presentationParams: params, animated: true, completion: nil)
+            viewController.presentInBottomDrawer(navigationController, presentationParams: params, animated: true, completion: nil)
         } else {
-            self.viewController.present(scene.containerViewController, animated: true)
+            viewController.present(scene.containerViewController, animated: true)
         }
     }
 
@@ -44,7 +45,6 @@ class InfoScreenRouter: JRBaseRouter {
     func open(url: URL) {
         viewController.present(SFSafariViewController(url: url), animated: true)
     }
-
 }
 
 extension InfoScreenRouter: JRCurrencyPickerViewControllerDelegate {
@@ -52,7 +52,6 @@ extension InfoScreenRouter: JRCurrencyPickerViewControllerDelegate {
     func currencyPickerViewController(_ viewController: JRCurrencyPickerViewControllerProtocol, didSelectCurrency currency: JRSDKCurrency) {
         returnToCurrentViewController()
     }
-
 }
 
 private extension InfoScreenRouter {
@@ -60,5 +59,4 @@ private extension InfoScreenRouter {
     func returnToCurrentViewController() {
         viewController.dismiss(animated: true)
     }
-
 }
